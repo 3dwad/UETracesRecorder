@@ -48,21 +48,40 @@ The app launches your packaged build with this format:
 
 ## Build (Windows)
 
-### Visual Studio 2022 (recommended)
+### Visual Studio 2022 (without CMake, recommended)
 
-1. Open the repository folder in Visual Studio (`File -> Open -> Folder...`).
-2. Visual Studio will detect `CMakePresets.json` and offer preset `vs2022-x64`.
-3. Select configuration `vs2022-x64-release` and build.
+You can build directly from committed Visual Studio project files (no CMake required):
 
-Or from terminal:
+1. Open `UETracesRecorder.sln` in Visual Studio 2022.
+2. Select configuration `Debug` or `Release` and platform `x64`.
+3. Build (`Build -> Build Solution`).
+
+Resulting executable:
+- `build/Release/UETracesRecorder.exe`
+
+### Visual Studio 2022 (CMake alternative)
+
+If you prefer CMake workflow (`Open Folder` or generated solution), install:
+
+- Visual Studio 2022
+- Visual Studio workload **Desktop development with C++**
+- Component **MSVC v143 - VS 2022 C++ x64/x86 build tools**
+- Component **Windows 10/11 SDK**
+- CMake 3.20+ available in `PATH`
+
+Then use either:
 
 ```powershell
 cmake --preset vs2022-x64
 cmake --build --preset vs2022-x64-release
 ```
 
-Resulting executable:
-- `build/vs2022-x64/Release/UETracesRecorder.exe`
+or:
+
+```powershell
+cmake --preset msvc-x64
+cmake --build --preset msvc-x64-release
+```
 
 ### Generic CMake
 
