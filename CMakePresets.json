@@ -1,29 +1,40 @@
 {
-  "version": 6,
+  "version": 3,
   "cmakeMinimumRequired": {
     "major": 3,
-    "minor": 23,
+    "minor": 20,
     "patch": 0
   },
   "configurePresets": [
     {
+      "name": "vs2022-x64",
+      "displayName": "Visual Studio 2022 (x64 Solution)",
+      "description": "Generates a .sln file for classic Visual Studio workflow.",
+      "generator": "Visual Studio 17 2022",
+      "architecture": "x64",
+      "binaryDir": "${sourceDir}/build/vs2022-x64"
+    },
+    {
       "name": "msvc-x64",
       "displayName": "MSVC x64 (Ninja Multi-Config)",
-      "description": "Preset for Visual Studio Open Folder and command-line builds.",
+      "description": "Alternative preset for Visual Studio Open Folder and command-line builds.",
       "generator": "Ninja Multi-Config",
-      "binaryDir": "${sourceDir}/build/msvc-x64",
-      "architecture": {
-        "strategy": "external",
-        "value": "x64"
-      },
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
+      "binaryDir": "${sourceDir}/build/msvc-x64"
     }
   ],
   "buildPresets": [
+    {
+      "name": "vs2022-x64-debug",
+      "displayName": "Build Debug (.sln VS2022 x64)",
+      "configurePreset": "vs2022-x64",
+      "configuration": "Debug"
+    },
+    {
+      "name": "vs2022-x64-release",
+      "displayName": "Build Release (.sln VS2022 x64)",
+      "configurePreset": "vs2022-x64",
+      "configuration": "Release"
+    },
     {
       "name": "msvc-x64-debug",
       "displayName": "Build Debug (MSVC x64)",

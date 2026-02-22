@@ -48,21 +48,30 @@ The app launches your packaged build with this format:
 
 ## Build (Windows)
 
-### Visual Studio 2022 (recommended)
+### Visual Studio 2022 (.sln workflow, recommended)
 
-1. Open the repository folder in Visual Studio (`File -> Open -> Folder...`).
-2. Visual Studio will detect `CMakePresets.json` and create the `msvc-x64` configure preset automatically.
-3. In the configuration dropdown choose either **x64-Debug** or **x64-Release** and build.
+If Open Folder does not show build configurations, use the explicit solution workflow:
 
-Or from terminal:
+1. Run `GenerateSolution.bat` (or execute the commands below in terminal).
+2. Open `build/vs2022-x64/UETracesRecorder.sln` in Visual Studio.
+3. Choose `Debug` or `Release` in the standard Visual Studio configuration dropdown and build.
+
+Terminal equivalent:
+
+```powershell
+cmake --preset vs2022-x64
+cmake --build --preset vs2022-x64-release
+```
+
+Resulting executable:
+- `build/vs2022-x64/Release/UETracesRecorder.exe`
+
+### Visual Studio 2022 (Open Folder alternative)
 
 ```powershell
 cmake --preset msvc-x64
 cmake --build --preset msvc-x64-release
 ```
-
-Resulting executable:
-- `build/msvc-x64/Release/UETracesRecorder.exe`
 
 ### Generic CMake
 
