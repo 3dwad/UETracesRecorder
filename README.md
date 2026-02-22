@@ -48,6 +48,24 @@ The app launches your packaged build with this format:
 
 ## Build (Windows)
 
+### Visual Studio 2022 (recommended)
+
+1. Open the repository folder in Visual Studio (`File -> Open -> Folder...`).
+2. Visual Studio will detect `CMakePresets.json` and offer preset `vs2022-x64`.
+3. Select configuration `vs2022-x64-release` and build.
+
+Or from terminal:
+
+```powershell
+cmake --preset vs2022-x64
+cmake --build --preset vs2022-x64-release
+```
+
+Resulting executable:
+- `build/vs2022-x64/Release/UETracesRecorder.exe`
+
+### Generic CMake
+
 ```powershell
 cmake -S . -B build
 cmake --build build --config Release
