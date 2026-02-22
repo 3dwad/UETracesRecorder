@@ -1,24 +1,39 @@
 {
-  "version": 3,
+  "version": 6,
   "cmakeMinimumRequired": {
     "major": 3,
-    "minor": 20,
+    "minor": 23,
     "patch": 0
   },
   "configurePresets": [
     {
-      "name": "vs2022-x64",
-      "displayName": "Visual Studio 2022 (x64)",
-      "generator": "Visual Studio 17 2022",
-      "architecture": "x64",
-      "binaryDir": "${sourceDir}/build/vs2022-x64"
+      "name": "msvc-x64",
+      "displayName": "MSVC x64 (Ninja Multi-Config)",
+      "description": "Preset for Visual Studio Open Folder and command-line builds.",
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/build/msvc-x64",
+      "architecture": {
+        "strategy": "external",
+        "value": "x64"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
     }
   ],
   "buildPresets": [
     {
-      "name": "vs2022-x64-release",
-      "displayName": "Build Release (VS2022 x64)",
-      "configurePreset": "vs2022-x64",
+      "name": "msvc-x64-debug",
+      "displayName": "Build Debug (MSVC x64)",
+      "configurePreset": "msvc-x64",
+      "configuration": "Debug"
+    },
+    {
+      "name": "msvc-x64-release",
+      "displayName": "Build Release (MSVC x64)",
+      "configurePreset": "msvc-x64",
       "configuration": "Release"
     }
   ]
