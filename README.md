@@ -14,25 +14,47 @@ UE Traces Recorder is a simple portable Windows desktop app for launching a pack
   - `bookmark`
   - `screenshot`
 - Additional available channels in UI:
-  - `task`
-  - `taskgraph`
-  - `counter`
-  - `stats`
-  - `memory`
-  - `module`
-  - `metadata`
-  - `loadtime`
-  - `assetloadtime`
-  - `cook`
-  - `file`
-  - `net`
-  - `object`
   - `animation`
+  - `assetloadtime`
+  - `assetmetadata`
   - `audio`
+  - `audiomixer`
+  - `callstack`
+  - `camerasystem`
+  - `chaoslocks`
+  - `chaosvd`
+  - `concert`
+  - `contextswitch`
+  - `cook`
+  - `counters`
+  - `curveeditor`
+  - `file`
+  - `iostore`
+  - `loadtime`
+  - `mass`
+  - `memalloc`
+  - `memtag`
+  - `messaging`
+  - `metadata`
+  - `module`
+  - `net`
   - `niagara`
-  - `rendercommands`
-  - `rhicommands`
+  - `object`
+  - `objectproperties`
   - `rdg`
+  - `rhicommands`
+  - `region`
+  - `rendercommands`
+  - `savetime`
+  - `slate`
+  - `stacksampling`
+  - `statetreedebug`
+  - `stats`
+  - `takerecorder`
+  - `task`
+  - `threadidlescope`
+  - `vsm`
+  - `visuallogger`
 - Always passes `-statnamedevents`.
 - Writes trace file with timestamp near `UETracesRecorder.exe` as:
   - `UETrace_YYYY-MM-DD_HH-MM-SS.utrace`

@@ -33,32 +33,54 @@ struct TraceChannel {
     bool checked_by_default;
 };
 
-constexpr std::array<TraceChannel, 25> kChannels = {{
-    {L"CPU", L"cpu", 2001, true},
-    {L"GPU", L"gpu", 2002, true},
-    {L"Frame", L"frame", 2003, true},
-    {L"Log", L"log", 2004, true},
-    {L"Bookmark", L"bookmark", 2005, true},
-    {L"Screenshot", L"screenshot", 2006, true},
-    {L"Task", L"task", 2007, false},
-    {L"TaskGraph", L"taskgraph", 2008, false},
-    {L"Counter", L"counter", 2009, false},
-    {L"Stats", L"stats", 2010, false},
-    {L"Memory", L"memory", 2011, false},
-    {L"Module", L"module", 2012, false},
-    {L"Metadata", L"metadata", 2013, false},
-    {L"LoadTime", L"loadtime", 2014, false},
-    {L"AssetLoadTime", L"assetloadtime", 2015, false},
-    {L"Cook", L"cook", 2016, false},
+constexpr std::array<TraceChannel, 47> kChannels = {{
+    {L"Animation", L"animation", 2001, false},
+    {L"AssetLoadTime", L"assetloadtime", 2002, false},
+    {L"AssetMetadata", L"assetmetadata", 2003, false},
+    {L"Audio", L"audio", 2004, false},
+    {L"AudioMixer", L"audiomixer", 2005, false},
+    {L"Bookmark", L"bookmark", 2006, true},
+    {L"Callstack", L"callstack", 2007, false},
+    {L"CameraSystem", L"camerasystem", 2008, false},
+    {L"ChaosLocks", L"chaoslocks", 2009, false},
+    {L"ChaosVD", L"chaosvd", 2010, false},
+    {L"Concert", L"concert", 2011, false},
+    {L"ContextSwitch", L"contextswitch", 2012, false},
+    {L"Cook", L"cook", 2013, false},
+    {L"Counters", L"counters", 2014, false},
+    {L"Cpu", L"cpu", 2015, true},
+    {L"CurveEditor", L"curveeditor", 2016, false},
     {L"File", L"file", 2017, false},
-    {L"Net", L"net", 2018, false},
-    {L"Object", L"object", 2019, false},
-    {L"Animation", L"animation", 2020, false},
-    {L"Audio", L"audio", 2021, false},
-    {L"Niagara", L"niagara", 2022, false},
-    {L"RenderCommands", L"rendercommands", 2023, false},
-    {L"RHICommands", L"rhicommands", 2024, false},
-    {L"RDG", L"rdg", 2025, false},
+    {L"Frame", L"frame", 2018, true},
+    {L"Gpu", L"gpu", 2019, true},
+    {L"IoStore", L"iostore", 2020, false},
+    {L"LoadTime", L"loadtime", 2021, false},
+    {L"Log", L"log", 2022, true},
+    {L"Mass", L"mass", 2023, false},
+    {L"MemAlloc", L"memalloc", 2024, false},
+    {L"MemTag", L"memtag", 2025, false},
+    {L"Messaging", L"messaging", 2026, false},
+    {L"Metadata", L"metadata", 2027, false},
+    {L"Module", L"module", 2028, false},
+    {L"Net", L"net", 2029, false},
+    {L"Niagara", L"niagara", 2030, false},
+    {L"Object", L"object", 2031, false},
+    {L"ObjectProperties", L"objectproperties", 2032, false},
+    {L"RDG", L"rdg", 2033, false},
+    {L"RHICommands", L"rhicommands", 2034, false},
+    {L"Region", L"region", 2035, false},
+    {L"RenderCommands", L"rendercommands", 2036, false},
+    {L"SaveTime", L"savetime", 2037, false},
+    {L"Screenshot", L"screenshot", 2038, true},
+    {L"Slate", L"slate", 2039, false},
+    {L"StackSampling", L"stacksampling", 2040, false},
+    {L"StateTreeDebug", L"statetreedebug", 2041, false},
+    {L"Stats", L"stats", 2042, false},
+    {L"TakeRecorder", L"takerecorder", 2043, false},
+    {L"Task", L"task", 2044, false},
+    {L"ThreadIdleScope", L"threadidlescope", 2045, false},
+    {L"VSM", L"vsm", 2046, false},
+    {L"VisualLogger", L"visuallogger", 2047, false},
 }};
 
 std::wstring GetExeDirectory() {
@@ -260,9 +282,9 @@ void CreateUi(HWND window) {
     CreateWindowExW(0, L"STATIC", L"Trace channels (6 default selected):", WS_CHILD | WS_VISIBLE,
         kControlStartX, kControlStartY + 56, 350, 20, window, nullptr, nullptr, nullptr);
 
-    constexpr int kColumns = 3;
-    constexpr int kRowHeight = 26;
-    constexpr int kColumnWidth = 230;
+    constexpr int kColumns = 4;
+    constexpr int kRowHeight = 24;
+    constexpr int kColumnWidth = 180;
     constexpr int kChannelsStartY = kControlStartY + 80;
 
     for (size_t i = 0; i < kChannels.size(); ++i) {
@@ -274,7 +296,7 @@ void CreateUi(HWND window) {
 
         HWND checkbox = CreateWindowExW(0, L"BUTTON", channel.display_name,
             WS_CHILD | WS_VISIBLE | BS_AUTOCHECKBOX,
-            x, y, 220, 20, window,
+            x, y, 170, 20, window,
             reinterpret_cast<HMENU>(channel.control_id), nullptr, nullptr);
         SendMessageW(checkbox, BM_SETCHECK,
             channel.checked_by_default ? BST_CHECKED : BST_UNCHECKED, 0);
